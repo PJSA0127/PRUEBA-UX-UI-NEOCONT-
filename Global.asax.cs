@@ -16,6 +16,8 @@ namespace PRUEBA_UX_UI__NEOCONT_
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleTable.EnableOptimizations = true;
+            BundleTable.Bundles.UseCdn = true;
         }
     }
 }

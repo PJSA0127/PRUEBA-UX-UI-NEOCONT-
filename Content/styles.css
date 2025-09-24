@@ -1,0 +1,54 @@
+﻿.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+/* Submenús multinivel en Bootstrap 3 */
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%; /* el submenú se abre al lado derecho */
+        margin-top: -1px;
+        display: none;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+
+    /* Flechita ► para indicar submenu */
+    .dropdown-submenu > a:after {
+        content: " \25B6"; /* triángulo ► */
+        float: right;
+        margin-top: 5px;
+        font-size: 10px;
+    }
+
+.navbar-default .navbar-nav > li > a {
+    color: #FAFAFC; /* letras blancas */
+}
+
+    /* Hover y menú abierto */
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:hover,
+    .navbar-default .navbar-nav > .open > a:focus,
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #160F41; /* color del texto al pasar el mouse */
+        background-color: #FAFAFC; /* fondo personalizado */
+    }
