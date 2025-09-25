@@ -120,7 +120,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\Contabilidad\ContabilidadAreaRegistration.cs" />
+    <Compile Include="Areas\Contabilidad\Controllers\TransaccionContableController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,6 +156,10 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Contabilidad\Views\web.config" />
+    <Content Include="Areas\Contabilidad\Views\TransaccionContable\_ViewStart.cshtml" />
+    <Content Include="Areas\Contabilidad\Views\TransaccionContable\SolicitudIngresoAsientoOperativos.cshtml" />
+    <Content Include="Areas\Contabilidad\Views\TransaccionContable\IngresoAsientosContablesManuales.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
@@ -177,13 +183,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Placeholder.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Contabilidad\Data\" />
+    <Folder Include="Areas\Contabilidad\Views\Shared\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
