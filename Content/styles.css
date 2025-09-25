@@ -15,14 +15,13 @@ textarea {
 }
 
 
-/* Submenús multinivel en Bootstrap 3 */
 .dropdown-submenu {
     position: relative;
 }
 
     .dropdown-submenu > .dropdown-menu {
         top: 0;
-        left: 100%; /* el submenú se abre al lado derecho */
+        left: 100%;
         margin-top: -1px;
         display: none;
     }
@@ -31,24 +30,45 @@ textarea {
         display: block;
     }
 
-    /* Flechita ► para indicar submenu */
+
     .dropdown-submenu > a:after {
-        content: " \25B6"; /* triángulo ► */
+        /* triángulo ► para indicar submenu */
+        /*content: " \25B6";*/
         float: right;
         margin-top: 5px;
         font-size: 10px;
     }
 
 .navbar-default .navbar-nav > li > a {
-    color: #FAFAFC; /* letras blancas */
+    color: #FAFAFC;
 }
 
-    /* Hover y menú abierto */
+
     .navbar-default .navbar-nav > .open > a,
     .navbar-default .navbar-nav > .open > a:hover,
     .navbar-default .navbar-nav > .open > a:focus,
     .navbar-default .navbar-nav > li > a:hover,
     .navbar-default .navbar-nav > li > a:focus {
-        color: #160F41; /* color del texto al pasar el mouse */
-        background-color: #FAFAFC; /* fondo personalizado */
+        color: #160F41;
+        background-color: #FAFAFC;
     }
+
+.dot-blink {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 8px;
+    background-color: #BC157C;
+    border-radius: 50%;
+    animation: blink 2.5s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}

@@ -6,24 +6,22 @@ using System.Web.Mvc;
 
 namespace PRUEBA_UX_UI__NEOCONT_.Controllers
 {
-    public class HomeController : Controller
+    public class SharedController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Placeholder()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Error()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Title = "Error del sistema";
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult NotFound()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.Title = "Página no encontrada";
             return View();
         }
     }

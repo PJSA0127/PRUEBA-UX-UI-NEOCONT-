@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Bienvenido a NEOCONT";
+}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+
+<div style="display:flex; justify-content:center; align-items:center; height:70vh; text-align:center;">
+    <div>
+        <!-- Mensaje principal -->
+        <h1 style="color:#BC157C; font-weight:700; font-size:54px; margin-bottom:20px;">
+            ¡Bienvenido a NEOCONT!
+        </h1>
+        <p style="font-size:22px; color:#555; margin-bottom:30px;">
+            Sistema Contable - Banco Guayaquil
+        </p>
+
+        <!-- Mensaje institucional -->
+        <div class="panel panel-default" style="max-width:600px; margin:auto;">
+            <div class="panel-body" style="font-size:16px;">
+                <p style="margin:0;">
+                    Seleccione una opción del menú superior para comenzar a trabajar.
+                    <br />
+                    Si necesita asistencia, diríjase al <a href="#"><i class="glyphicon glyphicon-question-sign"></i> <strong>Centro de Ayuda</strong></a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/jquery")
+@Scripts.Render("~/Scripts/bootstrap")
+@Scripts.Render("~/Scripts/js")

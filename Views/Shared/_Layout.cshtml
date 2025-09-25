@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="col-xs-4 col-sm-6 text-center">
-                    <h1 style="color:white; font-weight:700; margin:0;">NEOCONT</h1>
+                    <h1 style="color:white; font-weight:700; margin:0;">@ViewBag.Title</h1>
                 </div>
 
                 <div class="col-xs-4 col-sm-3 text-right" style="color:white; font-size:12px; line-height:1.4;">
@@ -59,33 +59,49 @@
 
         <nav class="navbar navbar-default" style="margin-bottom: 0; background-color: #BC157C; border: none; padding: 5px 20px 0px 5px; ">
             <div class="container-fluid">
-                <!-- Menú principal (izquierda) -->
                 <ul class="nav navbar-nav">
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#">Administración</a></li>
-
-                    <!-- Dropdown dentro del UL -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Contabilidad @*<span class="caret"></span>*@
+                            Contabilidad
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Usuarios</a></li>
-                            <li><a href="#">Roles</a></li>
 
-                            <!-- Submenú -->
                             <li class="dropdown-submenu">
-                                <a href="#">Configuración</a>
+                                <a href="#">Transacción Contable</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Parámetros</a></li>
-                                    <li><a href="#">Seguridad</a></li>
-                                    <li><a href="#">Permisos</a></li>
+                                    <li><a href="#">Plan de Cuentas</a></li>
+                                    <li><a href="#">Consulta de Movimientos Contables</a></li>
+                                    <li><a href="#">Consulta de Mayor Contable (Mensual)</a></li>
+                                    <li><a href="#">Consulta de Saldos Diarios y Promedios de Cuentas Contables</a></li>
+                                    <li><a href="#">Consulta de Asientos Contables</a></li>
+                                    <li><a href="#">Consulta - Ruteo y Aprobación de Asientos Manuales</a></li>
+                                    <li>
+                                        <a href="@Url.Action("IngresoAsientosContablesManuales", "TransaccionContable", new { area = "Contabilidad" })" class="nav-link">
+                                            Ingreso de Asientos Contables Manuales
+                                            <span class="dot-blink"></span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">Ingreso de Asientos Contables (Plantilla Masiva)</a></li>
+                                    <li><a href="#">Creación de Modelos de Asientos (Plantilla Manual)</a></li>
+                                    <li><a href="#">Ingreso de Asientos Contables (Plantilla Manual)</a></li>
+                                    <li><a href="#">Mayorización de Asientos Contables</a></li>
+                                    <li><a href="#">Desmayorización de Asientos Contables</a></li>
+                                    <li><a href="#">Consulta Contable por Centro de Costos</a></li>
+                                    <li><a href="#">Cuadres de Interfaces</a></li>
+                                    <li><a href="#">Factor Conversión</a></li>
+                                    <li><a href="#">Actualización de Saldos</a></li>
+                                    <li>
+                                        <a href="@Url.Action("SolicitudIngresoAsientoOperativos", "TransaccionContable", new { area = "Contabilidad" })" class="nav-link">
+                                            Solicitud Ingreso Asientos Operativos
+                                            <span class="dot-blink"></span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-
-
                     <li><a href="#">Bancos</a></li>
                     <li><a href="#">Cuadre Contable</a></li>
                 </ul>
@@ -98,7 +114,6 @@
         </nav>
     </header>
 
-    <!-- Contenido principal -->
     <div class="container body-content">
         @RenderBody()
         <hr />
