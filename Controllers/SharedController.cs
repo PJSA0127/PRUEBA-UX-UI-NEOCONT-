@@ -15,13 +15,16 @@ namespace PRUEBA_UX_UI__NEOCONT_.Controllers
 
         public ActionResult Error()
         {
-            ViewBag.Title = "Error del sistema";
             return View();
         }
 
         public ActionResult NotFound()
         {
-            ViewBag.Title = "Página no encontrada";
+            return View();
+        }
+
+        public ActionResult HelpCenter()
+        {
             return View();
         }
     }

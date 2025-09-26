@@ -1,8 +1,18 @@
-﻿
-<div style="display: flex; justify-content: center; align-items: center; height: 70vh; text-align: center;">
-    <div>
-        <h1>⚠ ¡Ups! Ha ocurrido un error.</h1>
-        <p>Estamos experimentando un problema interno. Por favor, inténtelo más tarde.</p>
-        <a href="@Url.Action("Placeholder","Shared")" class="btn btn-primary">Ir al inicio</a>
+﻿@{
+    ViewBag.Title = "Bienvenido al Centro de Ayuda de NEOCONT";
+    ViewBag.Message = "Accede a guías, preguntas frecuentes y soporte para resolver tus dudas de forma rápida y sencilla.";
+}
+
+<div class="welcome-container">
+    <div class="welcome-content">
+        <h1 class="welcome-title">@ViewBag.Title</h1>
+
+        <div class="panel panel-modern">
+            <div class="panel-body">
+                <p>
+                    @ViewBag.Message
+                </p>
+            </div>
+        </div>
     </div>
 </div>

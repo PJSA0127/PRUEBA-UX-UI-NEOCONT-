@@ -111,13 +111,13 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="no-hover">@ViewBag.AccountingDate</a></li>
-                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })"><i class="glyphicon glyphicon-question-sign"></i> Centro de Ayuda</a></li>
+                    <li><a href="@Url.Action("HelpCenter", "Shared", new { area = "" })"><i class="glyphicon glyphicon-question-sign"></i> Centro de Ayuda</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
-    <div class="container body-content">
+    <div class=" body-content">
         @RenderBody()
     </div>
 </body>

@@ -1,13 +1,12 @@
 ﻿:root {
     --color-blanco: #FAFAFC;
     --color-magenta: #BC157C;
-    --color-azul-oscuro: #160F41;
+    --color-azul-oscuro: #40337C;
+    --color-azul-claro: #1A73E8;
 }
 
 .body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin: 15px 5%;
 }
 
 .dl-horizontal dt {
@@ -21,6 +20,63 @@ textarea {
 }
 
 /*LAYOUT*/
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    text-align: center;
+    /*background-color: #FAFAFC;*/
+    padding: 20px;
+}
+
+.welcome-content {
+    max-width: 700px;
+}
+
+.welcome-title {
+    color: #BC157C;
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.welcome-message {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.panel-modern {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+    .panel-modern .panel-body {
+        font-size: 16px;
+        color: #333;
+        padding: 20px 25px;
+    }
+
+.help-link {
+    color: #BC157C;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+    .help-link:hover {
+        text-decoration: underline;
+    }
+
+.btn-primary {
+    background-color: var(--color-azul-claro);
+}
+
+    .btn-primary:hover {
+        background-color: var(--color-azul-oscuro);
+    }
+
 .dot-blink {
     display: inline-block;
     width: 8px;
@@ -63,7 +119,7 @@ textarea {
     background-color: var(--color-blanco);
     border-radius: 6px;
     padding: 5px 0;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.35);
     border: none;
     animation: fadeIn 0.2s ease-in-out;
     min-width: 190px;
@@ -136,33 +192,23 @@ header .row {
 }
 
 /*Ingreso de asiento contables manuales*/
-.modern-form {
-    border-radius: 10px;
-    border: 1px solid #e5e5e5;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+.modal {
+    text-align: center;
+    padding: 0 !important;
 }
 
-.modern-form .form-group {
-    margin-bottom: 15px;
-}
-
-.modern-form .form-control {
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-shadow: none;
-    transition: all 0.3s ease;
-}
-
-.modern-form .form-control:focus {
-    border-color: var(--color-magenta);
-        
-    box-shadow: 0 0 6px rgba(188, 21, 124, 0.3);
-}
-
-.modern-form .label-success {
+.modal:before {
+    content: '';
     display: inline-block;
-    font-size: 13px;
-    padding: 6px 10px;
-    border-radius: 5px;
-    background-color: var(--color-magenta);
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
 }
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+
