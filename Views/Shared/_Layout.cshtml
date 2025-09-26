@@ -35,18 +35,22 @@
 </head>
 
 <body>
-
     <header class="navbar navbar-inverse navbar-static-top" role="banner" style="background-color: #BC157C; border: none; ">
         <div class="container-fluid">
             <div class="row" style="display: flex; align-items: center; padding: 10px 20px 0px;">
 
                 <div class="col-xs-4 col-sm-3">
-                    <img src="~/Content/img/logo_bg_white.png" alt="Banco Guayaquil" style="height:40px;">
+                    <a href="@Url.Action("Placeholder", "Shared", new { area = "" })">
+                        <img src="~/Content/img/logo_bg_white.png" alt="Banco Guayaquil" style="height:40px;">
+                    </a>
                 </div>
 
                 <div class="col-xs-4 col-sm-6 text-center">
-                    <h1 style="color:white; font-weight:700; margin:0;">@ViewBag.Title</h1>
+                    <a href="@Url.Action("Placeholder", "Shared", new { area = "" })" style="text-decoration:none; color:white;">
+                        <h1 style="color:white; font-weight:700; margin:0;">@ViewBag.Title</h1>
+                    </a>
                 </div>
+
 
                 <div class="col-xs-4 col-sm-3 text-right" style="color:white; font-size:12px; line-height:1.4;">
                     <div><strong>@ViewBag.User</strong></div>
@@ -57,41 +61,40 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-default" style="margin-bottom: 0; background-color: #BC157C; border: none; padding: 5px 20px 0px 5px; ">
+        <nav class="navbar navbar-default" style="margin-bottom: 0; background-color: #BC157C; border: none; padding: 0px 20px 0px 5px; ">
             <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Administración</a></li>
+                    <li><a href="@Url.Action("Placeholder", "Shared", new { area = "" })">Inicio</a></li>
+                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Administración</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Contabilidad
                         </a>
                         <ul class="dropdown-menu">
-
                             <li class="dropdown-submenu">
-                                <a href="#">Transacción Contable</a>
+                                <a>Transacción Contable</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Plan de Cuentas</a></li>
-                                    <li><a href="#">Consulta de Movimientos Contables</a></li>
-                                    <li><a href="#">Consulta de Mayor Contable (Mensual)</a></li>
-                                    <li><a href="#">Consulta de Saldos Diarios y Promedios de Cuentas Contables</a></li>
-                                    <li><a href="#">Consulta de Asientos Contables</a></li>
-                                    <li><a href="#">Consulta - Ruteo y Aprobación de Asientos Manuales</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Plan de Cuentas</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Consulta de Movimientos Contables</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Consulta de Mayor Contable (Mensual)</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Consulta de Saldos Diarios y Promedios de Cuentas Contables</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Consulta de Asientos Contables</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Consulta - Ruteo y Aprobación de Asientos Manuales</a></li>
                                     <li>
                                         <a href="@Url.Action("IngresoAsientosContablesManuales", "TransaccionContable", new { area = "Contabilidad" })" class="nav-link">
                                             Ingreso de Asientos Contables Manuales
                                             <span class="dot-blink"></span>
                                         </a>
                                     </li>
-                                    <li><a href="#">Ingreso de Asientos Contables (Plantilla Masiva)</a></li>
-                                    <li><a href="#">Creación de Modelos de Asientos (Plantilla Manual)</a></li>
-                                    <li><a href="#">Ingreso de Asientos Contables (Plantilla Manual)</a></li>
-                                    <li><a href="#">Mayorización de Asientos Contables</a></li>
-                                    <li><a href="#">Desmayorización de Asientos Contables</a></li>
-                                    <li><a href="#">Consulta Contable por Centro de Costos</a></li>
-                                    <li><a href="#">Cuadres de Interfaces</a></li>
-                                    <li><a href="#">Factor Conversión</a></li>
-                                    <li><a href="#">Actualización de Saldos</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Ingreso de Asientos Contables (Plantilla Masiva)</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Creación de Modelos de Asientos (Plantilla Manual)</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Ingreso de Asientos Contables (Plantilla Manual)</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Mayorización de Asientos Contables</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Desmayorización de Asientos Contables</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Consulta Contable por Centro de Costos</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Cuadres de Interfaces</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Factor Conversión</a></li>
+                                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Actualización de Saldos</a></li>
                                     <li>
                                         <a href="@Url.Action("SolicitudIngresoAsientoOperativos", "TransaccionContable", new { area = "Contabilidad" })" class="nav-link">
                                             Solicitud Ingreso Asientos Operativos
@@ -102,13 +105,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="#">Bancos</a></li>
-                    <li><a href="#">Cuadre Contable</a></li>
+                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Bancos</a></li>
+                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })">Cuadre Contable</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Centro de Ayuda</a></li>
-                    <li><a>@ViewBag.AccountingDate</a></li>
+                    <li><a class="no-hover">@ViewBag.AccountingDate</a></li>
+                    <li><a href="@Url.Action("NotFound", "Shared", new { area = "" })"><i class="glyphicon glyphicon-question-sign"></i> Centro de Ayuda</a></li>
                 </ul>
             </div>
         </nav>
@@ -116,10 +119,6 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - NEOCONT</p>
-        </footer>
     </div>
 </body>
 </html>

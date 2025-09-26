@@ -1,4 +1,10 @@
-﻿.body-content {
+﻿:root {
+    --color-blanco: #FAFAFC;
+    --color-magenta: #BC157C;
+    --color-azul-oscuro: #160F41;
+}
+
+.body-content {
     margin-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
@@ -14,53 +20,15 @@ textarea {
     max-width: 280px;
 }
 
-
-.dropdown-submenu {
-    position: relative;
-}
-
-    .dropdown-submenu > .dropdown-menu {
-        top: 0;
-        left: 100%;
-        margin-top: -1px;
-        display: none;
-    }
-
-    .dropdown-submenu:hover > .dropdown-menu {
-        display: block;
-    }
-
-
-    .dropdown-submenu > a:after {
-        /* triángulo ► para indicar submenu */
-        /*content: " \25B6";*/
-        float: right;
-        margin-top: 5px;
-        font-size: 10px;
-    }
-
-.navbar-default .navbar-nav > li > a {
-    color: #FAFAFC;
-}
-
-
-    .navbar-default .navbar-nav > .open > a,
-    .navbar-default .navbar-nav > .open > a:hover,
-    .navbar-default .navbar-nav > .open > a:focus,
-    .navbar-default .navbar-nav > li > a:hover,
-    .navbar-default .navbar-nav > li > a:focus {
-        color: #160F41;
-        background-color: #FAFAFC;
-    }
-
+/*LAYOUT*/
 .dot-blink {
     display: inline-block;
     width: 8px;
     height: 8px;
     margin-left: 8px;
-    background-color: #BC157C;
+    background-color: var(--color-magenta);
     border-radius: 50%;
-    animation: blink 2.5s infinite;
+    animation: blink 1.5s infinite;
 }
 
 @keyframes blink {
@@ -71,4 +39,130 @@ textarea {
     25%, 75% {
         opacity: 0;
     }
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: var(--color-blanco);
+    font-weight: 500;
+    padding: 10px 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    background-color: var(--color-blanco);
+    color: var(--color-azul-oscuro);
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    background-color: var(--color-blanco);
+    border-radius: 6px;
+    padding: 5px 0;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+    border: none;
+    animation: fadeIn 0.2s ease-in-out;
+    min-width: 190px;
+}
+
+.dropdown-menu > li > a {
+    color: var(--color-azul-oscuro);
+    padding: 8px 14px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border-radius: 3px;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: var(--color-magenta);
+    color: var(--color-blanco);
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    border-radius: 6px;
+    min-width: 180px;
+}
+
+.dropdown-submenu > a::after {
+    content: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-nav > li > a.no-hover {
+    cursor: default;
+    pointer-events: none;
+    color: var(--color-blanco);
+    background: transparent !important;
+}
+
+header .row {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.navbar-default {
+    min-height: 55px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/*Ingreso de asiento contables manuales*/
+.modern-form {
+    border-radius: 10px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.modern-form .form-group {
+    margin-bottom: 15px;
+}
+
+.modern-form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.modern-form .form-control:focus {
+    border-color: var(--color-magenta);
+        
+    box-shadow: 0 0 6px rgba(188, 21, 124, 0.3);
+}
+
+.modern-form .label-success {
+    display: inline-block;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    background-color: var(--color-magenta);
 }
