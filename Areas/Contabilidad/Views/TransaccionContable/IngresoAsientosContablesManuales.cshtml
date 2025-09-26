@@ -1,9 +1,96 @@
-﻿@{
-    ViewBag.Title = "Ingreso de Asientos Contables Manuales";
-}
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+﻿@{ 
+    ViewBag.CurrentDate = DateTime.Now.ToString("yyyy/MM/dd");
 
-    <p>Use this area to provide additional information.</p>
-</main>
+
+    var date = DateTime.Now;
+
+    if (date.DayOfWeek == DayOfWeek.Saturday)
+    {
+        date = date.AddDays(2);
+    }
+    else if (date.DayOfWeek == DayOfWeek.Sunday)
+    {
+        date = date.AddDays(1);
+    }
+
+    ViewBag.AccountingDate = date.ToString("yyyy/MM/dd");
+
+    ViewBag.User = "psolis";
+}
+
+
+<ol class="breadcrumb modern-breadcrumb">
+    <li><a>Contabilidad</a></li>
+    <li><a>Transacción Contable</a></li>
+    <li class="active">Ingreso de Asientos Contables Manuales</li>
+</ol>
+
+<div class="panel panel-modern">
+    <div class="panel-heading">
+        <h4 class="panel-title">Formulario de Ingreso de Asientos Contables</h4>
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label>No Asiento</label>
+                    <input type="text" class="form-control" value="1" disabled />
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Fecha Ingreso</label>
+                    <input type="text" class="form-control" value="@ViewBag.CurrentDate" disabled />
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Usuario Ingreso</label>
+                    <input type="text" class="form-control" value="@ViewBag.User" disabled />
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Estado Asiento</label><br />
+                    <span class="label label-success">ELABORADO</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label>Departamento</label>
+                    <select class="form-control">
+                        <option>AC - ACCIONES</option>
+                        <option>CC - CRÉDITO</option>
+                        <option>FI - FINANZAS</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Oficina</label>
+                    <select class="form-control">
+                        <option>001 - MATRIZ</option>
+                        <option>002 - SUCURSAL NORTE</option>
+                        <option>003 - SUCURSAL SUR</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Descripción</label>
+                    <input type="text" class="form-control" placeholder="Ingrese descripción" />
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Fecha Contable</label>
+                    <input type="text" class="form-control" value="@ViewBag.AccountingDate" disabled />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-right">
+                    <button type="button" class="btn btn-primary">
+                        <i class="glyphicon glyphicon-plus"></i> Agregar Detalle
+                    </button>
+                </div>
+
+                <div class="col-md-6 text-left">
+                    <button type="button" class="btn btn-magenta">
+                        <i class="glyphicon glyphicon-floppy-disk"></i> Grabar Asiento
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

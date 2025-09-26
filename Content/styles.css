@@ -1,8 +1,12 @@
 ﻿:root {
     --color-blanco: #FAFAFC;
     --color-magenta: #BC157C;
-    --color-azul-oscuro: #40337C;
+    --color-magenta-oscuro: #A31A61;
+    --color-morado: #40337C;
     --color-azul-claro: #1A73E8;
+    --color-negro: #333333;
+    --color-verde-oscuro: #27AE60;
+    --color-gris: #CFCCDE;
 }
 
 .body-content {
@@ -19,14 +23,12 @@ textarea {
     max-width: 280px;
 }
 
-/*LAYOUT*/
 .welcome-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
     text-align: center;
-    /*background-color: #FAFAFC;*/
     padding: 20px;
 }
 
@@ -35,7 +37,7 @@ textarea {
 }
 
 .welcome-title {
-    color: #BC157C;
+    color: var(--color-magenta);
     font-weight: 700;
     font-size: 48px;
     margin-bottom: 15px;
@@ -43,38 +45,30 @@ textarea {
 
 .welcome-message {
     font-size: 20px;
-    color: #555;
+    color: var(--color-negro);
     margin-bottom: 25px;
 }
 
 .panel-modern {
     border-radius: 8px;
     border: none;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
     .panel-modern .panel-body {
         font-size: 16px;
-        color: #333;
+        color: var(--color-negro);
         padding: 20px 25px;
     }
 
 .help-link {
-    color: #BC157C;
+    color: var(--color-azul-claro);
     text-decoration: none;
     font-weight: 600;
 }
 
     .help-link:hover {
         text-decoration: underline;
-    }
-
-.btn-primary {
-    background-color: var(--color-azul-claro);
-}
-
-    .btn-primary:hover {
-        background-color: var(--color-azul-oscuro);
     }
 
 .dot-blink {
@@ -105,15 +99,15 @@ textarea {
     transition: all 0.3s ease;
 }
 
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-    background-color: var(--color-blanco);
-    color: var(--color-azul-oscuro);
-    border-radius: 4px;
-}
+    .navbar-default .navbar-nav > li > a:hover,
+    .navbar-default .navbar-nav > li > a:focus,
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:hover,
+    .navbar-default .navbar-nav > .open > a:focus {
+        background-color: var(--color-blanco);
+        color: var(--color-negro);
+        border-radius: 4px;
+    }
 
 .dropdown-menu {
     background-color: var(--color-blanco);
@@ -125,18 +119,18 @@ textarea {
     min-width: 190px;
 }
 
-.dropdown-menu > li > a {
-    color: var(--color-azul-oscuro);
-    padding: 8px 14px;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    border-radius: 3px;
-}
+    .dropdown-menu > li > a {
+        color: var(--color-morado);
+        padding: 8px 14px;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        border-radius: 3px;
+    }
 
-.dropdown-menu > li > a:hover {
-    background-color: var(--color-magenta);
-    color: var(--color-blanco);
-}
+        .dropdown-menu > li > a:hover {
+            background-color: var(--color-magenta);
+            color: var(--color-blanco);
+        }
 
 .dropdown-submenu:hover > .dropdown-menu {
     display: block;
@@ -146,17 +140,17 @@ textarea {
     position: relative;
 }
 
-.dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    border-radius: 6px;
-    min-width: 180px;
-}
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        border-radius: 6px;
+        min-width: 180px;
+    }
 
-.dropdown-submenu > a::after {
-    content: none !important;
-}
+    .dropdown-submenu > a::after {
+        content: none !important;
+    }
 
 @keyframes fadeIn {
     from {
@@ -186,29 +180,98 @@ header .row {
     min-height: 55px;
 }
 
-.navbar-default .navbar-nav > li > a {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    .navbar-default .navbar-nav > li > a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+.modern-breadcrumb {
+    background-color: var(--color-blanco);
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 14px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
-/*Ingreso de asiento contables manuales*/
-.modal {
-    text-align: center;
-    padding: 0 !important;
+    .modern-breadcrumb > li + li:before {
+        content: "›";
+        color: var(--color-negro);
+        padding: 0 8px;
+        font-weight: bold;
+    }
+
+    .modern-breadcrumb > li > a {
+        color: var(--color-negro);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .modern-breadcrumb > li > a:hover {
+            color: var(--color-magenta);
+        }
+
+    .modern-breadcrumb > .active {
+        color: var(--color-magenta);
+    }
+
+
+/*------------------------------------------
+    INGRESO DE ASIENTOS CONTABLES MANUALES
+------------------------------------------*/
+
+.label-success {
+    background-color: var(--color-magenta);
 }
 
-.modal:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    margin-right: -4px;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus {
+    background-color: var(--color-azul-claro) !important;
+    border-color: var(--color-azul-claro) !important;
+    color: var(--color-blanco) !important;
+    box-shadow: none !important;
 }
 
-.modal-dialog {
-    display: inline-block;
-    text-align: left;
-    vertical-align: middle;
+.btn-magenta,
+.btn-magenta:hover,
+.btn-magenta:focus,
+.btn-magenta:active,
+.btn-magenta:active:focus {
+    background-color: var(--color-magenta) !important;
+    border-color: var(--color-magenta) !important;
+    color: var(--color-blanco) !important;
+    box-shadow: none !important;
 }
 
+.panel-modern {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
 
+    .panel-modern .panel-heading {
+        background-color: var(--color-magenta);
+        color: white;
+        font-weight: 600;
+        border-radius: 8px 8px 0 0;
+        padding: 12px 20px;
+    }
+
+    .panel-modern .panel-title {
+        margin: 0;
+        font-size: 16px;
+    }
+
+.form-control {
+    border-radius: 6px;
+    border: 1px solid var(--color-gris);
+    box-shadow: none;
+    transition: border-color 0.2s ease;
+}
+
+    .form-control:focus {
+        border-color: var(--color-magenta);
+        box-shadow: 0 0 4px rgba(188, 21, 124, 0.3);
+    }
