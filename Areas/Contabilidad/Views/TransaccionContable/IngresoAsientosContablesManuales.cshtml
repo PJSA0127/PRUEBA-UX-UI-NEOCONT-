@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     ViewBag.CurrentDate = DateTime.Now.ToString("yyyy/MM/dd");
 
 
@@ -18,23 +18,20 @@
     ViewBag.User = "psolis";
 }
 
-
 <ol class="breadcrumb modern-breadcrumb">
     <li><a>Contabilidad</a></li>
     <li><a>Transacción Contable</a></li>
     <li class="active">Ingreso de Asientos Contables Manuales</li>
 </ol>
 
+@*Panel*@
 <div class="panel panel-modern">
-    <div class="panel-heading">
-        <h4 class="panel-title">Formulario de Ingreso de Asientos Contables</h4>
-    </div>
     <div class="panel-body">
         <form>
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label>No Asiento</label>
-                    <input type="text" class="form-control" value="1" disabled />
+                    <input type="text" class="form-control" value="" disabled />
                 </div>
                 <div class="col-md-3 form-group">
                     <label>Fecha Ingreso</label>
@@ -76,21 +73,364 @@
                     <input type="text" class="form-control" value="@ViewBag.AccountingDate" disabled />
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6 text-right">
-                    <button type="button" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-plus"></i> Agregar Detalle
-                    </button>
-                </div>
-
-                <div class="col-md-6 text-left">
-                    <button type="button" class="btn btn-magenta">
-                        <i class="glyphicon glyphicon-floppy-disk"></i> Grabar Asiento
-                    </button>
-                </div>
-            </div>
         </form>
+    </div>
+
+    @*Tabla Detalle de Asientos*@
+    <div class="table-responsive detalle-asientos" style="display:none">
+        <table class="table table-bordered table-hover table-modern">
+            <thead>
+                <tr>
+                    <th>Cuenta</th>
+                    <th>Descripción Cuenta</th>
+                    <th>Moneda</th>
+                    <th>Oficina</th>
+                    <th>Descripción Movimiento</th>
+                    <th>Ref. Impuesto</th>
+                    <th>Ref. PRB / Depto</th>
+                    <th class="text-right">Débito MN</th>
+                    <th class="text-right">Crédito MN</th>
+                    <th class="text-right">Débito ME</th>
+                    <th class="text-right">Crédito ME</th>
+                    <th>Centro Costo</th>
+                    <th>Producto</th>
+                    <th>Motivo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="7" class="text-right"><strong>TOTAL ASIENTO</strong></td>
+                    <td id="totalDebitoMN" class="text-right"><strong>0.00</strong></td>
+                    <td id="totalCreditoMN" class="text-right"><strong>0.00</strong></td>
+                    <td id="totalDebitoME" class="text-right"><strong>0.00</strong></td>
+                    <td id="totalCreditoME" class="text-right"><strong>0.00</strong></td>
+                    <td colspan="4"></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div id="leyendaAsiento" class="leyenda-asiento text-right">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" id="btnAgregarDetalle" data-toggle="modal" data-target="#detalleAsientoModal">
+                    <i class="glyphicon glyphicon-plus"></i> Agregar Detalle
+                </button>
+            </div>
+
+            <div class="col-md-6 text-left">
+                <button type="button" class="btn btn-magenta" id="btnGrabarAsiento">
+                    <i class="glyphicon glyphicon-floppy-disk"></i> Grabar Asiento
+                </button>
+            </div>
+
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-magenta" id="btnNuevoAsiento" style="display:none;">
+                    <i class="glyphicon glyphicon-plus"></i> Nuevo Asiento
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
+@*Modal Detalle*@
+<div class="modal fade modal-center" id="detalleAsientoModal" tabindex="-1" role="dialog" aria-labelledby="detalleAsientoLabel">
+    <div class="modal-dialog modal-md custom-modal" role="document">
+        <div class="modal-content">
+
+            @*Encabezado*@
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title">Agregar Detalle de Asiento</h4>
+            </div>
+
+            @*Cuerpo*@
+            <div class="modal-body">
+                <div class="tab-content">
+
+                    @*Caso 1: Cuentas en Dólares*@
+                    <div class="tab-pane fade in active" id="tipo1">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Número Cuenta</label>
+                                <input type="text" class="form-control" id="numeroCuentaTipo1" value="110101" disabled />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <button type="button" class="btn btn-magenta" id="btnConsultarCuenta">
+                                    <i class="glyphicon glyphicon-search"></i> Consultar
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Moneda</label>
+                                <input type="text" class="form-control" id="monedaTipo1" value="USD" disabled />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Descripción Cuenta</label>
+                                <input type="text" class="form-control" id="descripcionCuentaTipo1" value="Caja General" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Oficina</label>
+                                <select class="form-control" id="oficinaTipo1">
+                                    <option>001 - MATRIZ</option>
+                                    <option>002 - NORTE</option>
+                                    <option>003 - SUR</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Descripción Movimiento</label>
+                                <input type="text" class="form-control" id="descripcionMovimientoTipo1" placeholder="Ingrese descripción" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Tipo Movimiento</label>
+                                <select class="form-control" id="tipoMovimientoTipo1">
+                                    <option value="debito">Débito</option>
+                                    <option value="credito">Crédito</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Valor Movimiento</label>
+                                <input type="number" class="form-control" id="valorMovimientoTipo1" placeholder="0.00" />
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Caso 2: Cuenta con moneda extranjera*@
+                    <div class="tab-pane fade" id="tipo2">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Número Cuenta</label>
+                                <input type="text" class="form-control" id="numeroCuentaTipo2" value="220202" disabled />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <button type="button" class="btn btn-magenta" id="btnConsultarCuenta">
+                                    <i class="glyphicon glyphicon-search"></i> Consultar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Moneda</label>
+                                <input type="text" class="form-control" id="monedaTipo2" value="EUR" disabled />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Descripción Cuenta</label>
+                                <input type="text" class="form-control" id="descripcionCuentaTipo2" value="Banco Internacional" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Oficina</label>
+                                <select class="form-control" id="oficinaTipo2">
+                                    <option>001 - MATRIZ</option>
+                                    <option>002 - NORTE</option>
+                                    <option>003 - SUR</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Descripción Movimiento</label>
+                                <input type="text" class="form-control" id="descripcionMovimientoTipo2" placeholder="Ingrese descripción" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>Tipo Movimiento</label>
+                                <select class="form-control" id="tipoMovimientoTipo2">
+                                    <option value="debito">Débito</option>
+                                    <option value="credito">Crédito</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Detalles de Conversión de Moneda Extranjera</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Valor MN (USD)</label>
+                                <input type="number" class="form-control" id="valorMNtipo2" placeholder="0.00" />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Valor ME (EUR)</label>
+                                <input type="number" class="form-control" id="valorMEtipo2" placeholder="0.00" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Valor Conversión</label>
+                                <input type="number" class="form-control" id="valorConversionTipo2" placeholder="0.00" value="0.85" disabled />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>% Variación</label>
+                                <input type="number" class="form-control" id="variacionTipo2" placeholder="0.00" value="0.85" disabled />
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Caso 3: Cuenta con marcas, etc*@
+                    <div class="tab-pane fade" id="tipo3">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Número Cuenta</label>
+                                <input type="text" class="form-control" id="numeroCuentaTipo3" value="330303" disabled />
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <button type="button" class="btn btn-magenta" id="btnConsultarCuenta">
+                                    <i class="glyphicon glyphicon-search"></i> Consultar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Moneda</label>
+                                <input type="text" class="form-control" id="monedaTipo3" value="USD" disabled />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Descripción Cuenta</label>
+                                <input type="text" class="form-control" id="descripcionCuentaTipo3" value="Proveedor Servicios" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Oficina</label>
+                                <select class="form-control" id="oficinaTipo3">
+                                    <option>001 - MATRIZ</option>
+                                    <option>002 - NORTE</option>
+                                    <option>003 - SUR</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Descripción Movimiento</label>
+                                <input type="text" class="form-control" id="descripcionMovimientoTipo3" placeholder="Ingrese descripción" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Motivo / Centro Costo / Producto</label>
+                                <input type="text" class="form-control" id="motivoTipo3" placeholder="Ingrese el Motivo/Producto/ETC" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Tipo Movimiento</label>
+                                <select class="form-control" id="tipoMovimientoTipo3">
+                                    <option value="debito">Débito</option>
+                                    <option value="credito">Crédito</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Valor Movimiento</label>
+                                <input type="number" class="form-control" id="valorMovimientoTipo3" placeholder="0.00" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mensajeValidacionDetalle" class="leyenda-asiento ok text-center" style="margin-bottom: 10px; display: none;"></div>
+
+                </div>
+            </div>
+
+            @*Pie*@
+            <div class="modal-footer text-center">
+                <ul class="nav nav-pills" style="float:left;">
+                    <li class="active"><a href="#tipo1" data-toggle="tab">1</a></li>
+                    <li><a href="#tipo2" data-toggle="tab">2</a></li>
+                    <li><a href="#tipo3" data-toggle="tab">3</a></li>
+                </ul>
+
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-magenta" id="btnGuardarDetalle">
+                    <i class="glyphicon glyphicon-ok"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Eliminar*@
+<div class="modal fade" id="confirmarEliminarModal" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title" id="confirmarEliminarLabel">
+                    Confirmar eliminación
+                </h4>
+            </div>
+
+            <div class="modal-body text-center mb-0">
+                <p class="mensaje-eliminar mb-0">¿Está seguro que desea eliminar este detalle del asiento?</p>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-magenta" id="btnConfirmarEliminar">
+                    <i class="glyphicon glyphicon-trash"></i> Borrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Exito*@
+<div class="modal fade" id="asientoExitoModal" tabindex="-1" role="dialog" aria-labelledby="asientoExitoLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title" id="asientoExitoLabel">
+                    Éxito
+                </h4>
+            </div>
+
+            <div class="modal-body text-center mb-0">
+                <p class="mensaje-eliminar mb-0">El asiento contable ha sido guardado con éxito.</p>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-magenta" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Mensajes*@
+<div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title" id="mensajeModalLabel">
+                    Aviso
+                </h4>
+            </div>
+
+            <div class="modal-body text-center mb-0">
+                <p id="mensajeModalTexto" class="mensaje-eliminar mb-0"></p>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-magenta" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -214,7 +214,6 @@ header .row {
         color: var(--color-magenta);
     }
 
-
 /*------------------------------------------
     INGRESO DE ASIENTOS CONTABLES MANUALES
 ------------------------------------------*/
@@ -246,8 +245,6 @@ header .row {
 }
 
 .panel-modern {
-    border-radius: 8px;
-    border: none;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -269,9 +266,167 @@ header .row {
     border: 1px solid var(--color-gris);
     box-shadow: none;
     transition: border-color 0.2s ease;
+    color: var(--color-negro);
 }
 
     .form-control:focus {
         border-color: var(--color-magenta);
         box-shadow: 0 0 4px rgba(188, 21, 124, 0.3);
     }
+
+.modal-content {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.nav-pills > li > a {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    padding: 8px 0;
+    font-weight: bold;
+    color: var(--color-magenta);
+    border: 2px solid var(--color-magenta);
+    margin-right: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+    .nav-pills > li.active > a,
+    .nav-pills > li > a:hover,
+    .nav-pills > li.active > a:focus {
+        background-color: var(--color-magenta) !important;
+        border-color: var(--color-magenta) !important;
+        color: var(--color-blanco) !important;
+    }
+
+.custom-modal {
+    margin: 30px auto;
+}
+
+.modal-body {
+    padding: 15px 15px 0;
+}
+
+/* Tabla moderna de asientos */
+.table-modern {
+    background-color: var(--color-blanco);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 14px;
+}
+
+    .table-modern > thead > tr {
+        background-color: var(--color-magenta);
+        color: var(--color-blanco);
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+        .table-modern > thead > tr > th {
+            vertical-align: middle;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+        }
+
+    .table-modern > tbody > tr:hover {
+        background-color: var(--color-gris);
+    }
+
+    .table-modern td {
+        vertical-align: middle;
+        padding: 8px;
+    }
+
+    .table-modern .btn {
+        margin: 0 2px;
+    }
+
+.total-row {
+    background-color: var(--color-gris);
+    font-weight: bold;
+    color: var(--color-negro);
+}
+
+.panel > .panel-body + .table, .panel > .panel-body + .table-responsive, .panel > .table + .panel-body, .panel > .table-responsive + .panel-body {
+    border-top: none;
+}
+
+#leyendaAsiento {
+    margin: 10px 0 !important;
+}
+
+.leyenda-asiento.ok {
+    color: var(--color-magenta);
+}
+
+.leyenda-asiento.error {
+    color: var(--color-azul-claro);
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] {
+    background-color: var(--color-gris);
+    color: var(--color-negro);
+}
+
+.detalle-asientos {
+    padding: 0px 25px 20px;
+}
+
+input, select, textarea {
+    max-width: 100%;
+}
+
+.form-control[type=number]::-webkit-inner-spin-button,
+.form-control[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-control[type=number] {
+    -moz-appearance: textfield;
+}
+
+#confirmarEliminarModal .modal-dialog, #asientoExitoModal .modal-dialog, #mensajeModal .modal-dialog {
+    max-width: 480px;
+}
+
+#confirmarEliminarModal .modal-header, #asientoExitoModal .modal-header, #mensajeModal .modal-header {
+    padding: 15px 20px;
+    font-size: 18px;
+}
+
+#confirmarEliminarModal .modal-body, #asientoExitoModal .modal-body, #mensajeModal .modal-body {
+    font-size: 16px;
+    color: var(--color-negro);
+    padding: 20px 25px 0;
+}
+
+    #confirmarEliminarModal .modal-body .mensaje-eliminar, #asientoExitoModal .modal-body .mensaje-eliminar, #mensajeModal .modal-body .mensaje-eliminar {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+    }
+
+#confirmarEliminarModal .modal-footer, #asientoExitoModal .modal-footer, #mensajeModal .modal-footer {
+    padding: 15px 20px;
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#confirmarEliminarModal .btn-primary, #asientoExitoModal .btn-primary, #mensajeModal .btn-primary {
+    min-width: 120px;
+}
+
+#confirmarEliminarModal .btn-magenta, #asientoExitoModal .btn-magenta, #mensajeModal .btn-magenta {
+    min-width: 120px;
+}
+
+p {
+    margin: 0;
+}
