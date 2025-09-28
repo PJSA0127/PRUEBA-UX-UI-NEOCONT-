@@ -114,27 +114,28 @@
             </tfoot>
         </table>
 
-        <div id="leyendaAsiento" class="leyenda-asiento text-right">
-        </div>
+        <div id="leyendaAsiento" class="leyenda-asiento text-right"></div>
 
         <div class="row">
-            <div class="col-md-6 text-right">
-                <button type="button" class="btn btn-primary" id="btnAgregarDetalle" data-toggle="modal" data-target="#detalleAsientoModal">
-                    <i class="glyphicon glyphicon-plus"></i> Agregar Detalle
-                </button>
-            </div>
-
-            <div class="col-md-6 text-left">
-                <button type="button" class="btn btn-magenta" id="btnGrabarAsiento">
-                    <i class="glyphicon glyphicon-floppy-disk"></i> Grabar Asiento
-                </button>
-            </div>
-
             <div class="col-md-12 text-center">
                 <button type="button" class="btn btn-magenta" id="btnNuevoAsiento" style="display:none;">
                     <i class="glyphicon glyphicon-plus"></i> Nuevo Asiento
                 </button>
             </div>
+        </div>
+    </div>
+
+    @*Botones al final del panel*@
+    <div class="row" style="padding-bottom: 20px">
+        <div class="col-md-6 text-right">
+            <button type="button" class="btn btn-primary" id="btnAgregarDetalle" data-toggle="modal" data-target="#detalleAsientoModal">
+                <i class="glyphicon glyphicon-plus"></i> Agregar Detalle
+            </button>
+        </div>
+        <div class="col-md-6 text-left">
+            <button type="button" class="btn btn-magenta" id="btnGrabarAsiento">
+                <i class="glyphicon glyphicon-floppy-disk"></i> Grabar Asiento
+            </button>
         </div>
     </div>
 </div>

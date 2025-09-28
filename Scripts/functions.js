@@ -4,6 +4,15 @@ $(document).ready(function () {
         function () { $(this).removeClass('open'); }
     );
 
+    function actualizarVisibilidadTabla() {
+        var filas = $(".detalle-asientos tbody tr").length;
+        if (filas > 0) {
+            $(".detalle-asientos").show();
+        } else {
+            $(".detalle-asientos").hide();
+        }
+    }
+
     $('#detalleAsientoModal').on('hidden.bs.modal', function () {
         $("#mensajeValidacionDetalle").hide().text("");
     });
@@ -233,12 +242,14 @@ $(document).ready(function () {
             }
             actualizarTotales();
             validarAsiento();
+            actualizarVisibilidadTabla();
             $("#detalleAsientoModal").modal("hide");
         }
     });
 
     actualizarTotales();
     validarAsiento();
+    actualizarVisibilidadTabla();
 
     $(document).on("click", ".btn-delete", function (e) {
         e.preventDefault();
@@ -343,6 +354,7 @@ $(document).ready(function () {
 
     function resetearAsiento() {
         $(".detalle-asientos tbody").empty();
+        actualizarVisibilidadTabla();
         $("#totalDebitoMN, #totalCreditoMN, #totalDebitoME, #totalCreditoME")
             .text("0.00");
         $("#leyendaAsiento").removeClass("ok error").text("");
