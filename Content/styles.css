@@ -120,7 +120,7 @@ textarea {
 }
 
     .dropdown-menu > li > a {
-        color: var(--color-morado);
+        color: var(--color-negro);
         padding: 8px 14px;
         font-size: 14px;
         transition: all 0.2s ease;
@@ -372,7 +372,7 @@ header .row {
     color: var(--color-negro);
 }
 
-.detalle-asientos {
+.detalle-asientos, .detalle-asientosOperativos {
     padding: 0px 25px 20px;
 }
 
@@ -390,28 +390,28 @@ input, select, textarea {
     -moz-appearance: textfield;
 }
 
-#confirmarEliminarModal .modal-dialog, #asientoExitoModal .modal-dialog, #mensajeModal .modal-dialog {
+#confirmarEliminarModal .modal-dialog, #confirmarEliminarModalOperativo .modal-dialog, #asientoExitoModal .modal-dialog, #asientoExitoModalOperativo .modal-dialog, #mensajeModal .modal-dialog {
     max-width: 480px;
 }
 
-#confirmarEliminarModal .modal-header, #asientoExitoModal .modal-header, #mensajeModal .modal-header {
+#confirmarEliminarModal .modal-header, #confirmarEliminarModalOperativo .modal-header, #asientoExitoModal .modal-header, #asientoExitoModalOperativo .modal-header, #mensajeModal .modal-header {
     padding: 15px 20px;
     font-size: 18px;
 }
 
-#confirmarEliminarModal .modal-body, #asientoExitoModal .modal-body, #mensajeModal .modal-body {
+#confirmarEliminarModal .modal-body, #confirmarEliminarModalOperativo .modal-body, #asientoExitoModal .modal-body, #asientoExitoModalOperativo .modal-body, #mensajeModal .modal-body {
     font-size: 16px;
     color: var(--color-negro);
     padding: 20px 25px 0;
 }
 
-    #confirmarEliminarModal .modal-body .mensaje-eliminar, #asientoExitoModal .modal-body .mensaje-eliminar, #mensajeModal .modal-body .mensaje-eliminar {
+    #confirmarEliminarModal .modal-body .mensaje-eliminar, #confirmarEliminarModalOperativo .modal-body .mensaje-eliminar, #asientoExitoModal .modal-body .mensaje-eliminar, #asientoExitoModalOperativo .modal-body .mensaje-eliminar, #mensajeModal .modal-body .mensaje-eliminar {
         overflow: hidden;
         text-overflow: ellipsis;
         font-weight: 500;
     }
 
-#confirmarEliminarModal .modal-footer, #asientoExitoModal .modal-footer, #mensajeModal .modal-footer {
+#confirmarEliminarModal .modal-footer, #confirmarEliminarModalOperativo .modal-footer, #asientoExitoModal .modal-footer, #asientoExitoModalOperativo .modal-footer, #mensajeModal .modal-footer {
     padding: 15px 20px;
     border-top: none;
     display: flex;
@@ -419,14 +419,26 @@ input, select, textarea {
     gap: 15px;
 }
 
-#confirmarEliminarModal .btn-primary, #asientoExitoModal .btn-primary, #mensajeModal .btn-primary {
+#confirmarEliminarModal .btn-primary, #confirmarEliminarModalOperativo .btn-primary, #asientoExitoModal .btn-primary, #asientoExitoModalOperativo .btn-primary, #mensajeModal .btn-primary {
     min-width: 120px;
 }
 
-#confirmarEliminarModal .btn-magenta, #asientoExitoModal .btn-magenta, #mensajeModal .btn-magenta {
+#confirmarEliminarModal .btn-magenta, #confirmarEliminarModalOperativo .btn-magenta, #asientoExitoModal .btn-magenta, #asientoExitoModalOperativo .btn-magent, #mensajeModal .btn-magenta {
     min-width: 120px;
 }
 
 p {
     margin: 0;
+}
+
+/*------------------------------------------
+    SOLICITUD DE INGRESO DE ASIENTOS OPERATIVOS
+------------------------------------------*/
+
+.detalle-asientosOperativos input.form-control,
+.detalle-asientosOperativos select.form-control {
+    min-width: 140px;
+    width: 140px;
+    max-width: 140px;
+    display: inline-block;
 }

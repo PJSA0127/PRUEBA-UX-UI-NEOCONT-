@@ -1,9 +1,229 @@
 ﻿@{
-    ViewBag.Title = "Solicitud Ingreso Asientos Operativos";
-}
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+    ViewBag.CurrentDate = DateTime.Now.ToString("yyyy/MM/dd");
 
-    <p>Use this area to provide additional information.</p>
-</main>
+
+    var date = DateTime.Now;
+
+    if (date.DayOfWeek == DayOfWeek.Saturday)
+    {
+        date = date.AddDays(2);
+    }
+    else if (date.DayOfWeek == DayOfWeek.Sunday)
+    {
+        date = date.AddDays(1);
+    }
+
+    ViewBag.AccountingDate = date.ToString("yyyy/MM/dd");
+
+    ViewBag.User = "psolis";
+}
+<ol class="breadcrumb modern-breadcrumb">
+    <li><a>Contabilidad</a></li>
+    <li><a>Transacción Contable</a></li>
+    <li class="active">Solicitud Ingreso Asientos Operativos</li>
+</ol>
+
+@*Panel*@
+<div class="panel panel-modern">
+    <div class="panel-body">
+        <form>
+            <div class="row">
+
+                <div class="col-md-3 form-group">
+                    <label>Fecha Contable</label>
+                    <input type="text" class="form-control" value="@ViewBag.AccountingDate" disabled />
+                </div>
+
+                <div class="col-md-3 form-group">
+                    <label>Departamento</label>
+                    <select class="form-control" id="departamentoOperativo">
+                        <option value="AC">AC - ACCIONES</option>
+                        <option value="CC">CC - CRÉDITO</option>
+                        <option value="FI">FI - FINANZAS</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 form-group">
+                    <label>Oficina</label>
+                    <select class="form-control" id="oficinaOperativo">
+                        <option>001 - MATRIZ</option>
+                        <option>002 - SUCURSAL NORTE</option>
+                        <option>003 - SUCURSAL SUR</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3 form-group">
+                    <label>Descripción</label>
+                    <input type="text" class="form-control" id="descripcionOperativo" disabled />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive detalle-asientosOperativos">
+        <table class="table table-bordered table-hover table-modern">
+            <thead>
+                <tr>
+                    <th>Cuenta</th>
+                    <th>Descripción Cuenta</th>
+                    <th>Tipo</th>
+                    <th>Moneda</th>
+                    <th>Motivo</th>
+                    <th>Producto</th>
+                    <th>C. Costo</th>
+                    <th>Of. Mov</th>
+                    <th>Desc. Proceso</th>
+                    <th>Prueba Detpal.</th>
+                    <th>Identificación</th>
+                    <th>Cliente</th>
+                    <th>Doc / Cod</th>
+                    <th class="text-right">Valor MN</th>
+                    <th class="text-right">Valor ME</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select class="form-control tipo-selector">
+                            <option value="">---</option>
+                            <option value="110101">110101</option>
+                            <option value="220202">220202</option>
+                            <option value="330303">330303</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td>
+                        <select class="form-control">
+                            <option value="1">CREDITO</option>
+                            <option value="2">DEBITO</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td>
+                        <select class="form-control">
+                            <option>001 - MATRIZ</option>
+                            <option>002 - SUCURSAL NORTE</option>
+                            <option>003 - SUCURSAL SUR</option>
+                        </select>
+                    </td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" class="form-control text-right" /></td>
+                    <td><input type="number" class="form-control text-right" /></td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-xs btn-magenta"><i class="glyphicon glyphicon-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tabla de Totales -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-modern" style="max-width: 400px; margin: 25px 20px">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-right">TOTAL MN</th>
+                    <th class="text-right">TOTAL ME</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>DÉBITO</strong></td>
+                    <td id="totalDebitoMN" class="text-right">0.00</td>
+                    <td id="totalDebitoME" class="text-right">0.00</td>
+                </tr>
+                <tr>
+                    <td><strong>CRÉDITO</strong></td>
+                    <td id="totalCreditoMN" class="text-right">0.00</td>
+                    <td id="totalCreditoME" class="text-right">0.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-left" style="padding: 0 25px 20px">
+        <button type="button" class="btn btn-magenta" id="btnGrabarAsientoOperativo">
+            <i class="glyphicon glyphicon-floppy-disk"></i> Grabar Asiento
+        </button>
+    </div>
+</div>
+
+@*Modal Eliminar*@
+<div class="modal fade" id="confirmarEliminarModalOperativo" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarLabelOperativo">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title" id="confirmarEliminarLabelOperativo">
+                    Confirmar eliminación
+                </h4>
+            </div>
+
+            <div class="modal-body text-center mb-0">
+                <p class="mensaje-eliminar mb-0">¿Está seguro que desea eliminar este detalle del asiento?</p>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i> Cancelar
+                </button>
+                <button type="button" class="btn btn-magenta" id="btnConfirmarEliminar">
+                    <i class="glyphicon glyphicon-trash"></i> Borrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Exito*@
+<div class="modal fade" id="asientoExitoModalOperativo" tabindex="-1" role="dialog" aria-labelledby="asientoExitoLabelOperativo">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title" id="asientoExitoLabelOperativo">
+                    Éxito
+                </h4>
+            </div>
+
+            <div class="modal-body text-center mb-0">
+                <p class="mensaje-eliminar mb-0">El asiento contable ha sido guardado con éxito. Número de Asiento: <strong id="numeroAsientoExito"></strong></p>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-magenta" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Mensajes*@
+<div class="modal fade" id="mensajeModal" tabindex="-1" role="dialog" aria-labelledby="mensajeModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: var(--color-magenta); color: white; border-radius: 8px 8px 0 0;">
+                <h4 class="modal-title" id="mensajeModalLabel">
+                    Aviso
+                </h4>
+            </div>
+
+            <div class="modal-body text-center mb-0">
+                <p id="mensajeModalTexto" class="mensaje-eliminar mb-0"></p>
+            </div>
+
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-magenta" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
